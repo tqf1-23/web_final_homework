@@ -12,4 +12,10 @@ public class TaskService {
 	List<Task> getAllTasks(){
 		return dataTools.readTasksFromFile();
 	}
+
+	public void addNewTask(Task newTask) {
+        List<Task> tasks = dataTools.readTasksFromFile();
+        tasks.add(newTask);
+        dataTools.writeTasksToFile(tasks);
+	}
 }

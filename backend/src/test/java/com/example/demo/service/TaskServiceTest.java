@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -38,5 +40,15 @@ public class TaskServiceTest {
 		List<Task> all = taskService.getAllTasks();
 
 		assertEquals(tasks, all);
+	}
+	@Test
+	public void shouldAddATask() {
+		when(dataTools.readTasksFromFile()).thenReturn(tasks);
+		int tasks1 = taskService.getAllTasks().size();
+		Task newTask = new Task(1,"sleep");
+		taskService.addNewTask(newTask);
+		int tasks2 = taskService.getAllTasks().size();
+		assertEquals(tasks1+1, tasks2);
+        verify(dataTools).writeTasksToFile(any());
 	}
 }
