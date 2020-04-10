@@ -6,15 +6,28 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.io.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.example.demo.model.Task;
 
+@Service
 public class DataTools {
 	/**
 	 * 工具类，用于将Task的列表存入文件和从文件中读取Task列表
 	 */
-	private String pathname = "src/main/resources/static/Tasks.json";
+	
+	@Value("${todo.tools.filename}")
+	private String pathname;
+	
+	public String getPathname() {
+		return pathname;
+	}
+
+	public void setPathname(String pathname) {
+		this.pathname = pathname;
+	}
 
 	public DataTools(String pathname) {
 		this.pathname = pathname;

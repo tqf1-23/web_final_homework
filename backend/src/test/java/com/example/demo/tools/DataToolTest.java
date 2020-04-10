@@ -9,12 +9,14 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.model.Task;
 
+@SpringBootTest
 public class DataToolTest {
 	@Autowired
-	private DataTools dataTools = new DataTools();
+	private DataTools dataTools;
 
 	@AfterEach
 	void tearDown() {
@@ -23,6 +25,7 @@ public class DataToolTest {
 
 	@Test
 	public void shouldReadTasks() throws IOException {
+		System.out.println(dataTools.getPathname());
 		List<Task> tasks = dataTools.readTasksFromFile();
 		assertEquals(1, tasks.size());
 		assertEquals(1L, tasks.get(0).getId());
