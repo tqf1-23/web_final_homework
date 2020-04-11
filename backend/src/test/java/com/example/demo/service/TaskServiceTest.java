@@ -86,6 +86,28 @@ public class TaskServiceTest {
 
 		verify(dataTools, new Times(0)).writeTasksToFile(any());
 	}
+	@Test
+	public void shouldUpdateATask() {
+		tasks.add(new Task(1L, "task"));
+		when(dataTools.readTasksFromFile()).thenReturn(tasks);
 
+		taskService.update(new Task(1L, "new task"));
+		Optional<Task> optionalTask = tasks.stream().filter(task1 -> task1.getId() == 1L).findAny();
+		Task task = optionalTask.get();
+		assertEquals(1L, task.getId());
+		assertEquals("new task", task.getContent());
+		assertNotNull(task.getUpdatedTime());
+		verify(dataTools).writeTasksToFile(any());
+	}
+    @Test
+    public void shouldNotUpdateTaskWhenNotExist() {
+        when(dataTools.readTasksFromFile()).thenReturn(tasks);
+        taskService.update(new Task(1L, "new task"));
+        
+        Optional<Task> optionalTask = tasks.stream().filter(task1 -> task1.getId() == 1L).findAny();
+        assertFalse(optionalTask.isPresent());
+        
+        verify(dataTools, new Times(0)).writeTasksToFile(any());
+    }
 	
 }
