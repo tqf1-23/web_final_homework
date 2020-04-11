@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -43,7 +45,7 @@ public class TaskControllerTest {
 	    }
 	    
 	    @Test
-	    public void shouldCreateTask() throws Exception {
+	    public void shouldAddNewTask() throws Exception {
 	        Task newTask = new Task(1L, "new");
 	        when(service.addNewTask(newTask)).thenReturn(newTask);
 	        this.mockMvc.perform(post("/api/tasks")
@@ -53,12 +55,35 @@ public class TaskControllerTest {
 	    
 	    @Test
 	    public void shouldDeleteWhenExist() throws Exception {
-	        when(service.deleteATask(2L)).thenReturn(new Task(2L, "b"));
-	        this.mockMvc.perform(delete("/api/tasks/2")).andDo(print()).andExpect(status().isOk());
+	    	Task deletedTask = new Task(2L, "b");
+	        when(service.deleteATask(2L)).thenReturn(deletedTask);
+	        this.mockMvc.perform(delete("/api/tasks/2")
+	                .contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(deletedTask)))
+	                .andDo(print()).andExpect(status().isOk())
+	                .andExpect(jsonPath("$.content").value("b"));
 	    }
 	    @Test
-	    public void shouldReturnNoContentWhenNotExists() throws Exception {
+	    public void shouldNotDeleteWhenNotExists() throws Exception {
 	        when(service.deleteATask(2L)).thenReturn(null);
 	        this.mockMvc.perform(delete("/api/tasks/2")).andDo(print()).andExpect(status().isNoContent());
 	    }
+	    
+	    @Test
+	    public void shouldUpdateTaskById() throws Exception {
+	        Task updated = new Task(1L, "updated");
+	        when(service.update(any())).thenReturn(updated);
+	        this.mockMvc.perform(put("/api/tasks/1")
+	                .contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(updated)))
+	                .andDo(print()).andExpect(status().isOk())
+	                .andExpect(jsonPath("$.content").value("updated"));
+	    }
+	    @Test
+	    public void shouldNotUpdateWhenNotExists() throws Exception {
+	        Task updated = new Task(1L, "updated");
+	        when(service.update(any())).thenReturn(null);
+	        this.mockMvc.perform(put("/api/tasks/1")
+	        		.contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(updated)))
+	                .andDo(print()).andExpect(status().isNoContent());
+	    }
+
 }

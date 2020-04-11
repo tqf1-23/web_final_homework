@@ -41,4 +41,14 @@ public class TaskController {
 		}
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT,consumes = "application/json", produces = "application/json")
+	public Object updateTaskById(@PathVariable int id, @RequestBody Task task) {
+		Task task1 = myService.update(new Task(id, task.getContent()));
+		if (task1 == null) {
+			return new ResponseEntity<Task>(HttpStatus.NO_CONTENT);
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body(task1);
+		}
+	}
+
 }
