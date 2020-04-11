@@ -1,16 +1,17 @@
 package com.example.demo.service;
 
 
-
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Task;
 import com.example.demo.tools.DataTools;
 @Service
 public class TaskService {
-	DataTools dataTools = new DataTools();
+	@Autowired
+	DataTools dataTools ;
 	
 	public List<Task> getAllTasks(){
 		return dataTools.readTasksFromFile();

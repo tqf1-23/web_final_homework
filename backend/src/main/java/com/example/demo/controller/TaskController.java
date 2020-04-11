@@ -28,6 +28,7 @@ public class TaskController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Task> addATask(@RequestBody Task newTask) {
+		newTask.setUpdatedTime();
 		return ResponseEntity.status(HttpStatus.CREATED).body(myService.addNewTask(newTask));
 	}
 

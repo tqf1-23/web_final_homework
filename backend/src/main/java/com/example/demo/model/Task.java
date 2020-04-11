@@ -26,7 +26,6 @@ public class Task {
         try {
 			this.updatedTime = ft.parse(date);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -62,8 +61,10 @@ public class Task {
         this.content = content;
     }
 
-@Override
-   public String toString() {
-	return "{\"ID\":" + ID  + ", \"content\"=\"" + content  + "\", \"Updated Time\"=\"" + ft.format(updatedTime) + "\"}";
-   }
+	@Override
+	public String toString() {
+		return ID+","+content+","+updatedTime;
+	}
+    
+
 }
