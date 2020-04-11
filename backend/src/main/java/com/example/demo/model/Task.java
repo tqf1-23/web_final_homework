@@ -61,8 +61,8 @@ public class Task {
     public void setContent(String content) {
         this.content = content;
     }
-    
-   @Override
+
+@Override
    public String toString() {
 	return "{\"ID\":" + ID  + ", \"content\"=\"" + content  + "\", \"Updated Time\"=\"" + ft.format(updatedTime) + "\"}";
    }

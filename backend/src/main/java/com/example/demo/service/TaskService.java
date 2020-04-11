@@ -1,9 +1,8 @@
 package com.example.demo.service;
 
 
+
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.example.demo.model.Task;
 import com.example.demo.tools.DataTools;
@@ -11,26 +10,30 @@ import com.example.demo.tools.DataTools;
 public class TaskService {
 	DataTools dataTools = new DataTools();
 	
-	List<Task> getAllTasks(){
+	public List<Task> getAllTasks(){
 		return dataTools.readTasksFromFile();
 	}
 
-	public void addNewTask(Task newTask) {
+	public Task addNewTask(Task newTask) {
         List<Task> tasks = dataTools.readTasksFromFile();
         tasks.add(newTask);
         dataTools.writeTasksToFile(tasks);
+        return newTask;
 	}
-	public void deleteATask(long id) {
+	public Task deleteATask(long id) {
         List<Task> tasks = dataTools.readTasksFromFile();
         for(Task task:tasks) {
         	if(task.getId()==id) {
         		tasks.remove(task);
         		dataTools.writeTasksToFile(tasks);
-        		return;
+        		return task;
         	}
         }
+        return null;
 	}
 
-	public void update(Task task) {
+	public Task update(Task task) {
+		Task returnTask = null;
+		return returnTask;
 	}
 }
