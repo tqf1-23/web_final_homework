@@ -35,7 +35,16 @@ public class TaskService {
 	}
 
 	public Task update(Task task) {
-		Task returnTask = null;
-		return returnTask;
+		List<Task> tasks = dataTools.readTasksFromFile();
+		for(Task task_i:tasks)
+		{
+			if(task_i.getId()==task.getId()){
+				tasks.remove(task_i);
+				tasks.add(task);
+				dataTools.writeTasksToFile(tasks);
+				return task;
+			}
+		}
+		return null;
 	}
 }
