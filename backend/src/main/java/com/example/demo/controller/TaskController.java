@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,15 @@ public class TaskController {
 	public ResponseEntity<Task> addATask(@RequestBody Task newTask) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(myService.addNewTask(newTask));
 	}
-	
-	
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Task> deleteTaskbyId(@PathVariable int id) {
+		Task task = myService.deleteATask(id);
+		if (task == null) {
+			return new ResponseEntity<Task>(HttpStatus.NO_CONTENT);
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body(task);
+		}
+	}
+
 }

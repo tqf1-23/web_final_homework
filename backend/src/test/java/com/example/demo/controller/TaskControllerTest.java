@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -9,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +49,16 @@ public class TaskControllerTest {
 	        this.mockMvc.perform(post("/api/tasks")
 	                .contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(newTask)))
 	                .andDo(print()).andExpect(status().isCreated());
+	    }
+	    
+	    @Test
+	    public void shouldDeleteWhenExist() throws Exception {
+	        when(service.deleteATask(2L)).thenReturn(new Task(2L, "b"));
+	        this.mockMvc.perform(delete("/api/tasks/2")).andDo(print()).andExpect(status().isOk());
+	    }
+	    @Test
+	    public void shouldReturnNoContentWhenNotExists() throws Exception {
+	        when(service.deleteATask(2L)).thenReturn(null);
+	        this.mockMvc.perform(delete("/api/tasks/2")).andDo(print()).andExpect(status().isNoContent());
 	    }
 }
