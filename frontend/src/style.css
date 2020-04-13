@@ -46,6 +46,7 @@
     width: 400px;
   }
   .back-header{
+    color: #3f3f3f;
     height: 50px;
     width: 400px;
   }
@@ -54,10 +55,12 @@
     width: 400px;
   }
   .back-load{
+    color: #3f3f3f;
     height: 50px;
     width: 400px;
   }
   .back-error{
+    color: #3f3f3f;
     height: 50px;
     width: 400px;
   }

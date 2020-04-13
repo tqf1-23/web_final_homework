@@ -56,7 +56,7 @@ const TodoList = () => {
   }, []);*/
 
   if (list === null) {
-    return <div className="back-load">Tasks is loading ...</div>;
+    return <div className="back-load">等待数据下载</div>;
   }
 
   if (error) {

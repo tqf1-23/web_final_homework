@@ -32,7 +32,7 @@ class ListItem extends Component{
     render(){
         const item=this.props.item
         return(
-            <div className="back">
+            <div className="back" alignItems= 'center' justifyContent='center'>
                 <p className="item">{item.content}</p>
                 <input className="update-input" value={this.state.inputContent} onChange={this.OnInputChange}/>
                 <button className="update-button" onClick={this.onUpdateButtonClick}>Update</button>
