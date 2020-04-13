@@ -25,12 +25,16 @@ class UpdateItem extends Component{
             inputContent:''
         })
     }
+    onDeleteButtonClick=()=>{
+        this.props.deleteItem(this.props.index)
+    }
 
     render(){
         return(
             <div>
                 <input className="update-input" value={this.state.inputContent} onChange={this.OnInputChange}/>
                 <button className="update-button" onClick={this.onAddButtonClick}>Update</button>
+                <button className="delete-button" onClick={this.onDeleteButtonClick}>Delete</button>
             </div>
         );
     }

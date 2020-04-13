@@ -66,22 +66,21 @@ const TodoList = () => {
 
 
   return(
-    <React.Fragment>
+         <div >
                 {
                     list.map(item=>(
-                        <div>
-                            <ListItem item={item}/>
-                            <UpdateItem 
+                        <div >
+                            <ListItem 
                             updateItem={handleUpdateTask}
                             item={item} 
                             index={item.id}
+                            deleteItem={handleDeleteTask}
                             />
-                            <button className="delete-button" onClick={handleDeleteTask.bind(this,item.id)}>Delete</button>
                         </div>
                     ))
                 }
                 <NewItem addItem={handleAddTask}/>
-            </React.Fragment>
+            </div>
         );
 }
 
