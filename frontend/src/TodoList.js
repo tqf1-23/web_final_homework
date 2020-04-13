@@ -4,6 +4,7 @@ import NewItem from './NewItem';
 import UpdateItem from './UpdateItem';
 import { getTodos, addTodo, deleteTodo, updateTodo } from "./api/TodoApi";
 import _ from "lodash";
+import './style.css';
 
 const TodoList = () => {
 
@@ -65,7 +66,7 @@ const TodoList = () => {
 
 
   return(
-             <div>
+    <React.Fragment>
                 {
                     list.map(item=>(
                         <div>
@@ -75,12 +76,12 @@ const TodoList = () => {
                             item={item} 
                             index={item.id}
                             />
-                            <button onClick={handleDeleteTask.bind(this,item.id)}>Delete</button>
+                            <button className="delete-button" onClick={handleDeleteTask.bind(this,item.id)}>Delete</button>
                         </div>
                     ))
                 }
                 <NewItem addItem={handleAddTask}/>
-            </div>
+            </React.Fragment>
         );
 }
 

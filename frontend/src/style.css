@@ -1,0 +1,27 @@
+.delete-button {
+    background-color: gainsboro;
+    color: red;
+    height: 30px;
+    width: 80px;
+  } 
+  .delete-button:hover { background: grey; }
+  .update-button {
+    background-color: gainsboro;
+    color: white;
+    height: 30px;
+    width: 80px;
+  } 
+  .update-button:hover { background:grey; }
+  .add-button {
+    background-color: gainsboro;
+    color: white;
+    height: 30px;
+    width: 80px;
+  } 
+  .add-button:hover { background:grey; }
+  .update-input{
+    background-color: white;
+    color: green;
+    height: 23px;
+    width: 80px;
+  }

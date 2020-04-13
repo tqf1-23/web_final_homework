@@ -29,8 +29,8 @@ class UpdateItem extends Component{
     render(){
         return(
             <div>
-                <input value={this.state.inputContent} onChange={this.OnInputChange}/>
-                <button onClick={this.onAddButtonClick}>Update</button>
+                <input className="update-input" value={this.state.inputContent} onChange={this.OnInputChange}/>
+                <button className="update-button" onClick={this.onAddButtonClick}>Update</button>
             </div>
         );
     }
