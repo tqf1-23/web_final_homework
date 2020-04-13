@@ -1,7 +1,6 @@
-import React, { Component,useState, Fragment, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import ListItem from './ListItem';
 import NewItem from './NewItem';
-import UpdateItem from './UpdateItem';
 import { getTodos, addTodo, deleteTodo, updateTodo } from "./api/TodoApi";
 import _ from "lodash";
 import './style.css';
@@ -39,7 +38,7 @@ const TodoList = () => {
       setList(list.filter((item) => item.id !== id));
     });
 
-    const handleUpdateTask = (updateV) => {
+  const handleUpdateTask = (updateV) => {
       if (updateV.content === "") return;
   
       updateTodo(updateV).then((response) => {
@@ -48,39 +47,39 @@ const TodoList = () => {
         );
       });
     };
-  /*useEffect(() => {
-    handleLoadTasks();
-  }, []);*/
-
   useEffect(() => {
-    setList([{"id":1,"content":"Restful API homework","updatedAt":"2020-04-05 00:00:00"}])
+    handleLoadTasks();
   }, []);
 
+  /*useEffect(() => {
+    setList([{"id":1,"content":"Restful API homework","updatedAt":"2020-04-05 00:00:00"}])
+  }, []);*/
+
   if (list === null) {
-    return <div>Tasks is loading ...</div>;
+    return <div className="back-load">Tasks is loading ...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="back-error">{error}</div>;
   }
 
 
   return(
          <div >
-                {
-                    list.map(item=>(
-                        <div >
-                            <ListItem 
-                            updateItem={handleUpdateTask}
-                            item={item} 
-                            index={item.id}
-                            deleteItem={handleDeleteTask}
-                            />
-                        </div>
-                    ))
-                }
-                <NewItem addItem={handleAddTask}/>
-            </div>
+           {
+              list.map(item=>(
+               <div >
+                   <ListItem 
+                     updateItem={handleUpdateTask}
+                     item={item} 
+                     index={item.id}
+                     deleteItem={handleDeleteTask}
+                    />
+               </div>
+              ))
+            }
+            <NewItem addItem={handleAddTask}/>
+         </div>
         );
 }
 

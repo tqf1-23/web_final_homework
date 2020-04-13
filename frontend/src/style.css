@@ -29,19 +29,19 @@
   .update-input{
     margin: 0 3px;
     background-color: white;
-    color: green;
+    color: #4090d1;
     height: 23px;
     width: 100px;
   }
   .add-input{
     margin: 0 3px;
     background-color: white;
-    color: green;
+    color: #4090d1;
     height: 23px;
     width: 200px;
   }
   .back{
-    background-color: #e9b6c3;
+    background-color: #e9b6b6;
     height: 100px;
     width: 400px;
   }
@@ -50,6 +50,14 @@
     width: 400px;
   }
   .back-new{
+    height: 50px;
+    width: 400px;
+  }
+  .back-load{
+    height: 50px;
+    width: 400px;
+  }
+  .back-error{
     height: 50px;
     width: 400px;
   }

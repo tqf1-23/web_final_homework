@@ -15,7 +15,7 @@ class ListItem extends Component{
         console.log(this.state.inputContent)
     }
 
-    onAddButtonClick=()=>{
+    onUpdateButtonClick=()=>{
         const newTask = {
             id: this.props.index,
             content: this.state.inputContent,
@@ -35,7 +35,7 @@ class ListItem extends Component{
             <div className="back">
                 <p className="item">{item.content}</p>
                 <input className="update-input" value={this.state.inputContent} onChange={this.OnInputChange}/>
-                <button className="update-button" onClick={this.onAddButtonClick}>Update</button>
+                <button className="update-button" onClick={this.onUpdateButtonClick}>Update</button>
                 <button className="delete-button" onClick={this.onDeleteButtonClick}>Delete</button>
             </div>
         );
