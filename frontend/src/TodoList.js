@@ -6,7 +6,7 @@ import { getTodos, addTodo, deleteTodo, updateTodo } from "./api/TodoApi";
 import _ from "lodash";
 
 const TodoList = () => {
-  const [inputValue, setInputValue] = useState("");
+
   const [list, setList] = useState(null);
   const [error, setError] = useState("");
 
@@ -30,7 +30,6 @@ const TodoList = () => {
 
     addTodo(newTask).then(() => {
       setList([...list, newTask]);
-      setInputValue("");
     });
   };
 
@@ -48,13 +47,13 @@ const TodoList = () => {
         );
       });
     };
-  useEffect(() => {
-    handleLoadTasks();
-  }, []);
-
   /*useEffect(() => {
-    setList([{"id":1,"content":"Restful API homework","updatedAt":"2020-04-05 00:00:00"}])
+    handleLoadTasks();
   }, []);*/
+
+  useEffect(() => {
+    setList([{"id":1,"content":"Restful API homework","updatedAt":"2020-04-05 00:00:00"}])
+  }, []);
 
   if (list === null) {
     return <div>Tasks is loading ...</div>;

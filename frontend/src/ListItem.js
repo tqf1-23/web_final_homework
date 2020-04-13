@@ -8,11 +8,7 @@ class ListItem extends Component{
 
     render(){
         const item=this.props.item
-        if(item.done){
-            return <p className="done-item">{item.content}</p>
-        }else{
-            return <p className="item">{item.content}</p>
-        }
+        return <p className="item">{item.content}</p>
     }
 }
 
