@@ -28,6 +28,14 @@ public class TaskController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Task> addATask(@RequestBody Task newTask) {
+		List<Task> l = myService.getAllTasks();
+		long maxid=0;
+		for (Task task :l) {
+			if(maxid<task.getId()) {
+				maxid = task.getId();
+			}
+		}
+		newTask.setId(maxid+1);
 		newTask.setUpdatedTime();
 		return ResponseEntity.status(HttpStatus.CREATED).body(myService.addNewTask(newTask));
 	}

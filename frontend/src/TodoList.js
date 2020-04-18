@@ -65,21 +65,22 @@ const TodoList = () => {
 
 
   return(
-         <div >
+      <div>
+         <ul id='todoList'>
            {
               list.map(item=>(
-               <div >
                    <ListItem 
+                   key={item.id}
                      updateItem={handleUpdateTask}
                      item={item} 
                      index={item.id}
                      deleteItem={handleDeleteTask}
                     />
-               </div>
               ))
             }
-            <NewItem addItem={handleAddTask}/>
-         </div>
+         </ul>
+        <NewItem addItem={handleAddTask}/>
+        </div>
         );
 }
 

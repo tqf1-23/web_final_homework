@@ -32,12 +32,12 @@ class ListItem extends Component{
     render(){
         const item=this.props.item
         return(
-            <div className="back" alignItems= 'center' justifyContent='center'>
-                <p className="item">{item.content}</p>
+            <li className="back" alignitems= 'center' justifycontent='center'>
+                <label className="item">{item.content}</label>
                 <input className="update-input" value={this.state.inputContent} onChange={this.OnInputChange}/>
                 <button className="update-button" onClick={this.onUpdateButtonClick}>Update</button>
                 <button className="delete-button" onClick={this.onDeleteButtonClick}>Delete</button>
-            </div>
+            </li>
         );
     }
 }
